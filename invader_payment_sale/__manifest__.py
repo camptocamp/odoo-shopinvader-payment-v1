@@ -7,7 +7,7 @@
     "summary": "Implements sale order as payable",
     "version": "14.0.1.0.1",
     "category": "e-commerce",
-    "website": "https://github.com/shopinvader/odoo-shopinvader-payment",
+    "website": "https://github.com/camptocamp/odoo-shopinvader-payment-v1",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "depends": [
