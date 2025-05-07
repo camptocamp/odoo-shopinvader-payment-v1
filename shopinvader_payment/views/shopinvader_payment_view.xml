@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record id="shopinvader_payment_view_tree" model="ir.ui.view">
         <field name="model">shopinvader.payment</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="sequence" widget="handle" />
                 <field name="acquirer_id" />
                 <field name="code" />
                 <field name="notification" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -33,5 +32,4 @@
             </form>
         </field>
     </record>
-
 </odoo>

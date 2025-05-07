@@ -5,7 +5,6 @@ from odoo.addons.component.core import Component
 
 
 class CartService(Component):
-
     _inherit = [
         "shopinvader.cart.service",
         "shopinvader.abstract.payable.sale.service",

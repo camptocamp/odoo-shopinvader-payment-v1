@@ -42,8 +42,7 @@ class AbstractPayableSaleService(AbstractComponent):
                     "id": method.acquirer_id.id,
                     "name": method.acquirer_id.name,
                     # fmt: off
-                    "provider":
-                        method.acquirer_id.provider,
+                    "provider": method.acquirer_id.provider,
                     # fmt: on
                     "code": method.code,
                     "description": method.description,
