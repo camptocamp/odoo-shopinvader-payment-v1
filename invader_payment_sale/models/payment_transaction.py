@@ -5,7 +5,6 @@ from odoo import models
 
 
 class PaymentTransaction(models.Model):
-
     _inherit = "payment.transaction"
 
     def _get_invader_payables(self):
