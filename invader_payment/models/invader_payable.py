@@ -5,7 +5,6 @@ from odoo.tools.float_utils import float_round
 
 
 class InvaderPayable(models.AbstractModel):
-
     _name = "invader.payable"
     _description = "Interface for payable objects (e.g. cart, ...)"
 
@@ -30,14 +29,10 @@ class InvaderPayable(models.AbstractModel):
         - state = "authorized" (depending on the provider)
         """
         acquirer_authorize = (
-            self.env["payment.acquirer"]
-            ._get_feature_support()
-            .get("authorize", [])
+            self.env["payment.acquirer"]._get_feature_support().get("authorize", [])
         )
         transactions = self._invader_get_transactions()
-        transactions_done = transactions.filtered(
-            lambda tr: tr.state == "done"
-        )
+        transactions_done = transactions.filtered(lambda tr: tr.state == "done")
         if acquirer_authorize:
             transactions_done |= transactions.filtered(
                 lambda tr: tr.acquirer_id.provider in acquirer_authorize

@@ -4,7 +4,6 @@ from odoo import api, models
 
 
 class PaymentTransaction(models.Model):
-
     _inherit = "payment.transaction"
 
     def _get_platform(self):
@@ -62,5 +61,5 @@ class PaymentTransaction(models.Model):
                 continue
             for payable in payables:
                 state = record.state
-                event_name = "on_payment_transaction_{}".format(state)
+                event_name = f"on_payment_transaction_{state}"
                 payable._event(event_name).notify(payable, record)

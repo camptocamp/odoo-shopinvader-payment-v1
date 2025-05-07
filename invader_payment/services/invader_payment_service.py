@@ -7,7 +7,6 @@ from odoo.addons.component.core import Component
 
 
 class InvaderPaymentService(Component):
-
     _name = "invader.payment.service"
     _usage = "invader.payment"
 
@@ -37,8 +36,7 @@ class InvaderPaymentService(Component):
         if acquirer.provider != provider:
             raise UserError(
                 _(
-                    "Payment mode acquirer mismatch should be "
-                    "'{}' instead of '{}'."
+                    "Payment mode acquirer mismatch should be " "'{}' instead of '{}'."
                 ).format(provider, acquirer.provider)
             )
 
