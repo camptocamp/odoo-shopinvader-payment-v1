@@ -5,7 +5,7 @@
 {
     "name": "Invader payment sale",
     "summary": "Implements sale order as payable",
-    "version": "18.0.1.0.1",
+    "version": "14.0.1.0.1",
     "category": "e-commerce",
     "website": "https://github.com/camptocamp/odoo-shopinvader-payment-v1",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
