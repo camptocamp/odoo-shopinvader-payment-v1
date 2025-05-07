@@ -8,7 +8,6 @@ from odoo.addons.component.core import AbstractComponent, Component
 
 
 class FakePaymentManual(AbstractComponent):
-
     _name = "payment.service.manual.fake"
     _inherit = "base.rest.service"
     _usage = "fake_payment_manual"
@@ -63,7 +62,6 @@ class FakePaymentManual(AbstractComponent):
 
 
 class FakePaymentElectronic(AbstractComponent):
-
     _name = "payment.service.electronic.fake"
     _inherit = "base.rest.service"
     _usage = "fake_payment_electronic"
@@ -118,7 +116,6 @@ class FakePaymentElectronic(AbstractComponent):
 
 
 class PaymentServiceElectronicShopinvader(Component):
-
     # expose bank transfer payment service under /shopinvader
 
     _name = "payment.service.electronic.fake.shopinvader"
@@ -128,7 +125,6 @@ class PaymentServiceElectronicShopinvader(Component):
 
 
 class PaymentServiceManualShopinvader(Component):
-
     # expose bank transfer payment service under /shopinvader
 
     _name = "payment.service.manual.fake.shopinvader"

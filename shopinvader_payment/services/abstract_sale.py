@@ -7,7 +7,6 @@ from odoo.addons.component.core import AbstractComponent
 
 
 class AbstractSaleService(AbstractComponent):
-
     _inherit = "shopinvader.abstract.sale.service"
 
     def _convert_one_sale(self, sale):
