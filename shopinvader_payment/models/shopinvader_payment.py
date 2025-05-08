@@ -12,6 +12,7 @@ class ShopinvaderPayment(models.Model):
     _order = "sequence"
 
     # TODO: make unique by provider
+    # TODO: migrate acquirer_id to provider_id and auto select a payment method
     provider_id = fields.Many2one(
         "payment.provider", required=True, ondelete="restrict"
     )
