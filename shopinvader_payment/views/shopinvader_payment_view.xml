@@ -5,7 +5,8 @@
         <field name="arch" type="xml">
             <list>
                 <field name="sequence" widget="handle" />
-                <field name="acquirer_id" />
+                <field name="provider_id" />
+                <field name="method_id" />
                 <field name="code" />
                 <field name="notification" />
             </list>
@@ -22,7 +23,8 @@
                         <field name="code" class="oe_inline" />
                     </h1>
                     <group name="configuration">
-                        <field name="acquirer_id" widget="selection" />
+                        <field name="provider_id" widget="selection" />
+                        <field name="method_id" widget="selection" />
                         <field name="notification" />
                     </group>
                     <group name="description" string="Description">

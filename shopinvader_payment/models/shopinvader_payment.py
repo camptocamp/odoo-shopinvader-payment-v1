@@ -11,9 +11,11 @@ class ShopinvaderPayment(models.Model):
     _description = "Shopinvader Payment"
     _order = "sequence"
 
-    acquirer_id = fields.Many2one(
-        "payment.acquirer", required=True, ondelete="restrict"
+    # TODO: make unique by provider
+    provider_id = fields.Many2one(
+        "payment.provider", required=True, ondelete="restrict"
     )
+    method_id = fields.Many2one("payment.method", ondelete="restrict")
     sequence = fields.Integer()
     backend_id = fields.Many2one(
         "shopinvader.backend", "Backend", required=True, ondelete="cascade"

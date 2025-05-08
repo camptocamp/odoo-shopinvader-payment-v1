@@ -14,19 +14,19 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: shopinvader_payment
-#: model:ir.model.fields,field_description:shopinvader_payment.field_shopinvader_payment__acquirer_id
-msgid "Acquirer"
+#: model:ir.model.fields,field_description:shopinvader_payment.field_shopinvader_payment__provider_id
+msgid "Provider"
 msgstr ""
 
 #. module: shopinvader_payment
 #: code:addons/shopinvader_payment/models/sale_order.py:0
 #, python-format
-msgid "Acquirer %s is not allowed on backend %s"
+msgid "Provider %s is not allowed on backend %s"
 msgstr ""
 
 #. module: shopinvader_payment
 #: model:ir.ui.menu,name:shopinvader_payment.account_payment_mode_menu
-msgid "Acquirers"
+msgid "Providers"
 msgstr ""
 
 #. module: shopinvader_payment
