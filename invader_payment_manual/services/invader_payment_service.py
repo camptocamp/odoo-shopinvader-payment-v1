@@ -11,5 +11,5 @@ class InvaderPaymentService(Component):
         provider = provider.sudo()
         # Validate custom code
         if provider.code == "custom":
-            return self._check_provider_code(provider.custom_code, given_code)
+            return self._check_provider_code(provider.custom_mode, given_code)
         return super()._check_provider(provider, given_code)
