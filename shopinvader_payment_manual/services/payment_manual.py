@@ -5,7 +5,6 @@ from odoo.addons.component.core import Component
 
 
 class PaymentServiceManualShopinvader(Component):
-
     # expose bank transfer payment service under /shopinvader
 
     _name = "payment.service.manual.shopinvader"

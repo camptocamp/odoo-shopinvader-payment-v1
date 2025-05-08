@@ -18,9 +18,7 @@ class ShopinvaderManualPaymentCase(CommonConnectedCartCase):
             context={},
             db=self.env.cr.dbname,
             uid=None,
-            httprequest=Mock(
-                environ={"HTTP_SESS_CART_ID": cart_id}, headers={}
-            ),
+            httprequest=Mock(environ={"HTTP_SESS_CART_ID": cart_id}, headers={}),
             session=DotDict(),
         )
 
@@ -30,12 +28,12 @@ class ShopinvaderManualPaymentCase(CommonConnectedCartCase):
             yield request
 
     def setUp(self, *args, **kwargs):
-        super(ShopinvaderManualPaymentCase, self).setUp(*args, **kwargs)
+        super().setUp(*args, **kwargs)
         self.acquirer = self.env.ref("payment.payment_acquirer_transfer")
 
     @classmethod
     def setUpClass(cls):
-        super(ShopinvaderManualPaymentCase, cls).setUpClass()
+        super().setUpClass()
         cls.cart = cls.env.ref("shopinvader.sale_order_2")
         cls.shopinvader_session = {"cart_id": cls.cart.id}
         with cls.work_on_services(
@@ -60,9 +58,7 @@ class ShopinvaderManualPaymentCase(CommonConnectedCartCase):
             self.assertIn("cart", res["store_cache"])
             self.assertEqual(res["store_cache"]["cart"], {})
             self.assertIn("last_sale", res["store_cache"])
-            self.assertEqual(
-                res["store_cache"]["last_sale"]["id"], self.cart.id
-            )
+            self.assertEqual(res["store_cache"]["last_sale"]["id"], self.cart.id)
 
     def test_get_cart_payment_info(self):
         response = self.service.dispatch("search")
