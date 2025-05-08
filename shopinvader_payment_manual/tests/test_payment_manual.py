@@ -27,20 +27,19 @@ class ShopinvaderManualPaymentCase(CommonConnectedCartCase):
             s.callback(odoo.http._request_stack.pop)
             yield request
 
-    def setUp(self, *args, **kwargs):
-        super().setUp(*args, **kwargs)
-        self.acquirer = self.env.ref("payment.payment_acquirer_transfer")
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.cart = cls.env.ref("shopinvader.sale_order_2")
         cls.shopinvader_session = {"cart_id": cls.cart.id}
+
         with cls.work_on_services(
             cls, partner=None, shopinvader_session=cls.shopinvader_session
         ) as work:
             cls.cart_service = work.component(usage="cart")
             cls.payment_service = work.component(usage="payment_manual")
+
+        cls.provider = cls.env.ref("payment.payment_provider_transfer")
 
     def test_payment_manual_service(self):
         self.assertFalse(self.cart.transaction_ids)
@@ -49,7 +48,7 @@ class ShopinvaderManualPaymentCase(CommonConnectedCartCase):
                 "add_payment",
                 params={
                     "target": "current_cart",
-                    "payment_mode_id": self.acquirer.id,
+                    "payment_mode_id": self.provider.id,
                 },
             )
             self.assertEqual(1, len(self.cart.transaction_ids))
@@ -78,7 +77,7 @@ class ShopinvaderManualPaymentCase(CommonConnectedCartCase):
                 "add_payment",
                 params={
                     "target": "current_cart",
-                    "payment_mode_id": self.acquirer.id,
+                    "payment_mode_id": self.provider.id,
                 },
             )
         self.assertEqual(self.cart.typology, "cart")
