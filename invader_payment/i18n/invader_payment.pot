@@ -44,5 +44,5 @@ msgstr ""
 #. module: invader_payment
 #: code:addons/invader_payment/services/invader_payment_service.py:0
 #, python-format
-msgid "Payment mode acquirer mismatch should be '{}' instead of '{}'."
+msgid "Payment mode provider mismatch should be '{}' instead of '{}'."
 msgstr ""
