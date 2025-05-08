@@ -67,7 +67,7 @@ class ShopinvaderManualPaymentCase(CommonConnectedCartCase):
             len(self.backend.payment_method_ids),
         )
 
-    def test_no_congigured_payment(self):
+    def test_no_configured_payment(self):
         self.assertEqual(self.cart.typology, "cart")
         self.env.ref(
             "shopinvader_payment_manual.shopinvader_payment_banktransfer"
