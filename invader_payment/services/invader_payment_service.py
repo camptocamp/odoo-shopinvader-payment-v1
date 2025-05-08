@@ -28,16 +28,19 @@ class InvaderPaymentService(Component):
         """
         return {"target": {"type": "string", "required": True, "allowed": []}}
 
-    def _check_provider(self, acquirer_id, provider):
+    def _check_provider(self, provider, provider_code):
         """Check that the payment mode has the correct provider
         If the provider is not the same, raise an error
         """
-        acquirer = acquirer_id.sudo()
-        if acquirer.provider != provider:
+        provider = provider.sudo()
+        if provider.code != provider_code:
             raise UserError(
                 _(
-                    "Payment mode acquirer mismatch should be " "'{}' instead of '{}'."
-                ).format(provider, acquirer.provider)
+                    "Payment mode provider mismatch should be "
+                    "'%(expected)s' instead of '%(wrong)s'.",
+                    expected=provider.code,
+                    wrong=provider_code,
+                )
             )
 
     def _get_transaction_validator(self):
@@ -49,7 +52,7 @@ class InvaderPaymentService(Component):
         """
         return {
             "date": {"type": "datetime"},
-            "acquirer": {"type": "dict", "required": True},
+            "provider": {"type": "dict", "required": True},
             "state": {
                 "type": "string",
                 "allowed": [
@@ -82,7 +85,7 @@ class InvaderPaymentService(Component):
         res = [
             "id",
             "date",
-            ("acquirer_id:acquirer", ["id", "display_name:name"]),
+            ("provider_id:provider", ["id", "display_name:name"]),
             "state",
             "amount",
         ]

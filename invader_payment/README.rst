@@ -48,6 +48,7 @@ Authors
 -------
 
 * ACSONE SA/NV
+* Camptocamp
 
 Contributors
 ------------

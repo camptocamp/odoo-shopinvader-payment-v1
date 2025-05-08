@@ -8,12 +8,12 @@ class InvaderPayable(models.AbstractModel):
     _name = "invader.payable"
     _description = "Interface for payable objects (e.g. cart, ...)"
 
-    def _invader_prepare_payment_transaction_data(self, acquirer_id):
+    def _invader_prepare_payment_transaction_data(self, provider_id):
         """
         Prepare a dictionary to create a ``payment.transaction`` for the
         correct amount and linked to the payable object.
 
-        :param acquirer_id: ``payment.acquirer`` record
+        :param provider_id: ``payment.provider`` record
         :return: dictionary suitable for ``payment.transaction`` ``create()``
         """
 
@@ -28,14 +28,14 @@ class InvaderPayable(models.AbstractModel):
         - state = "done"
         - state = "authorized" (depending on the provider)
         """
-        acquirer_authorize = (
-            self.env["payment.acquirer"]._get_feature_support().get("authorize", [])
+        provider_authorize = (
+            self.env["payment.provider"]._get_feature_support().get("authorize", [])
         )
         transactions = self._invader_get_transactions()
         transactions_done = transactions.filtered(lambda tr: tr.state == "done")
-        if acquirer_authorize:
+        if provider_authorize:
             transactions_done |= transactions.filtered(
-                lambda tr: tr.acquirer_id.provider in acquirer_authorize
+                lambda tr: tr.provider_id.provider in provider_authorize
                 and tr.state == "authorized"
             )
         return transactions_done
@@ -67,7 +67,7 @@ class InvaderPayable(models.AbstractModel):
         :param amount: float
         :return: int
         """
-        dp_name = transaction.acquirer_id.provider or ""
+        dp_name = transaction.provider_id.provider or ""
         if dp_name:
             dp_name = dp_name.capitalize()
         digits = self.env["decimal.precision"].precision_get(dp_name)

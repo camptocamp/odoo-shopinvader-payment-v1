@@ -4,10 +4,10 @@
 {
     "name": "Shopinvader Payment",
     "summary": "Payment integration for Shopinvader",
-    "version": "14.0.1.0.5",
+    "version": "18.0.1.0.0",
     "category": "e-commerce",
     "website": "https://github.com/camptocamp/odoo-shopinvader-payment-v1",
-    "author": "ACSONE SA/NV",
+    "author": "ACSONE SA/NV, Camptocamp",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
