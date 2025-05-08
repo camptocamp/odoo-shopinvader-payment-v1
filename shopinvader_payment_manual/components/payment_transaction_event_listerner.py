@@ -7,5 +7,8 @@ class SaleOrderPaymentTransactionEventListener(Component):
     _inherit = "sale.order.payment.transaction.event.listener"
 
     def on_payment_transaction_pending(self, sale_order, transaction):
-        if transaction.acquirer_id.provider == "transfer":
+        if (
+            transaction.provider_id.code == "custom"
+            and transaction.provider_id.custom_mode == "wire_transfer"
+        ):
             self._confirm_and_invalidate_session(sale_order)
