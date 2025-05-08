@@ -28,18 +28,21 @@ class InvaderPaymentService(Component):
         """
         return {"target": {"type": "string", "required": True, "allowed": []}}
 
-    def _check_provider(self, provider, provider_code):
+    def _check_provider(self, provider, given_code):
         """Check that the payment mode has the correct provider
         If the provider is not the same, raise an error
         """
         provider = provider.sudo()
-        if provider.code != provider_code:
+        self._check_provider_code(provider.code, given_code)
+
+    def _check_provider_code(self, expected_code, given_code):
+        if expected_code != given_code:
             raise UserError(
                 _(
                     "Payment mode provider mismatch should be "
-                    "'%(expected)s' instead of '%(wrong)s'.",
-                    expected=provider.code,
-                    wrong=provider_code,
+                    "'%(expected)s' instead of '%(wrong_code)s'.",
+                    expected_code=expected_code,
+                    wrong_code=given_code,
                 )
             )
 
