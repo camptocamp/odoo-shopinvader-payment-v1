@@ -7,13 +7,13 @@ class SaleOrder(models.Model):
     _name = "sale.order"
     _inherit = ["sale.order", "invader.payable"]
 
-    def _invader_prepare_payment_transaction_data(self, acquirer_id):
+    def _invader_prepare_payment_transaction_data(self, provider):
         self.ensure_one()
         vals = {
             "amount": self.amount_total,
             "currency_id": self.currency_id.id,
             "partner_id": self.partner_id.id,
-            "acquirer_id": acquirer_id.id,
+            "provider_id": provider.id,
             "sale_order_ids": [(6, 0, self.ids)],
         }
         return vals
