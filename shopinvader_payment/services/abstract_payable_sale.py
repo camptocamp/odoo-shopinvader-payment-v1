@@ -18,7 +18,7 @@ class AbstractPayableSaleService(AbstractComponent):
         Specific method to shopinvader to retrieve the payment dict information
         to pass to the front-end
         * Available methods
-        * The acquirer
+        * The provider
         * The amount
         # TODO: For retro compatibility with services return content, we
                 let the dict keys unchanged. To be changed in next version
@@ -39,10 +39,10 @@ class AbstractPayableSaleService(AbstractComponent):
         for method in methods:
             res.append(
                 {
-                    "id": method.acquirer_id.id,
-                    "name": method.acquirer_id.name,
+                    "id": method.provider_id.id,
+                    "name": method.provider_id.name,
                     # fmt: off
-                    "provider": method.acquirer_id.provider,
+                    "provider": method.provider_id.code,
                     # fmt: on
                     "code": method.code,
                     "description": method.description,
