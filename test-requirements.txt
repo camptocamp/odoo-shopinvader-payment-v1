@@ -1,0 +1,4 @@
+odoo-test-helper
+# ref to our fork since requirements.txt will be rewritten by pre-commit
+odoo-addon-shopinvader @ git+https://github.com/camptocamp/odoo-shopinvader-v1@18.0#subdirectory=shopinvader
+odoo-addon-base_url @ git+https://github.com/camptocamp/odoo-shopinvader-v1@18.0#subdirectory=base_url
