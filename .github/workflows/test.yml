@@ -65,6 +65,8 @@ jobs:
         run: oca_init_test_database
       - name: Run tests
         run: oca_run_tests
+        env:
+          REST_API_METHOD_FIX_DECORATOR_DEPRECATE_LOG_DISABLE: 1
       - name: Upload screenshots from JS tests
         uses: actions/upload-artifact@v4
         if: ${{ failure() }}
