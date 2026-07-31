@@ -20,7 +20,8 @@ jobs:
               if [ -f ${reqfile} ] ; then
                   result=0
                   # reject non-comment lines that contain a / (i.e. URLs, relative paths)
-                  grep "^[^#].*/" ${reqfile} || result=$?
+                  # except references to our own fork, which are expected overrides
+                  grep "^[^#].*/" ${reqfile} | grep -v "camptocamp/odoo-shopinvader-v1" || result=$?
                   if [ $result -eq 0 ] ; then
                       echo "Unreleased dependencies found in ${reqfile}."
                       exit 1
@@ -65,6 +66,8 @@ jobs:
         run: oca_init_test_database
       - name: Run tests
         run: oca_run_tests
+        env:
+          REST_API_METHOD_FIX_DECORATOR_DEPRECATE_LOG_DISABLE: 1
       - name: Upload screenshots from JS tests
         uses: actions/upload-artifact@v4
         if: ${{ failure() }}
