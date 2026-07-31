@@ -40,7 +40,6 @@ jobs:
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb18.0:latest
             name: test with OCB
-            makepot: "true"
     services:
       postgres:
         image: postgres:12
@@ -78,6 +77,3 @@ jobs:
       - uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-      - name: Update .pot files
-        run: oca_export_and_push_pot https://x-access-token:${{ secrets.GIT_PUSH_TOKEN }}@github.com/${{ github.repository }}
-        if: ${{ matrix.makepot == 'true' && github.event_name == 'push' && github.repository_owner == 'camptocamp' }}
